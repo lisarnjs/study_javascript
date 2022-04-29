@@ -3,7 +3,6 @@ April 20, Friday
 
 ## **var** vs **let** vs **const**
 ### var
----
 > 블록 스코프가 없다.  
 
 즉, 함수 스코프이거나 전역 스코프이다.
@@ -74,7 +73,66 @@ Example 02
 Example 02에서 if(false) 블록 안 코드는 절대 실행되지 않지만, 이는 호이스팅에 전혀 영향을 주지 않는다.  
 즉, if 내부의 var는 sayHi()의 시작부분에서 처리되므로 (*)표시된 줄에 이미 phrase는 선언된 상태라는 것이다.
 
+### let
+> 재선언은 불가능, 재할당은 가능하다.
+
+```javascript
+// Example
+
+// 재할당 가능
+let message;
+
+message = "Hello";
+
+message = "World"; // 값이 변경됨
+
+console.log(message); // World
+---------------------
+// 같은 변수를 여러번 선언하면 에러 발생(재선언 불가능)
+let message = "Hello";
+let message = "World"; // SyntaxError: 'message' has already been declared
+---------------------
+// 변수를 두 개 선언하고, 한 변수의 데이터를 다른 변수에 복사할 수 있다.
+let Hello = "Hello";
+let message;
+
+message = Hello; // Hello의 "Hello"값을 message에 복사한다.
+
+console.log(Hello); // Hello
+console.log(message); // Hello
+```
+
+### const
+> 재할당이 불가능하다.
+
+즉, 변수값이 절대 변경되지 않을 경우 혹은 변경되면 안되는 경우 값이 변경되는 것을 방지하기 위해 사용한다.
+```javascript
+const age = 21;
+age = 30; // error, can't reassign the constant! (재할당 불가능)
+```
+
+**대문자 상수**  
+기억하기 힘든 값을 변수에 할당해 별칭으로 사용하는 것이 관습이다.
+(대문자, 밑줄로 구성된 이름으로 명명)
+```javascript
+const COLOR_RED = "#F00";
+const COLOR_GREEN = "#0F0";
+
+// 색상을 고르고 싶을 때 별칭을 사용할 수 있음
+let color = COLOR_RED;
+console.log(color); // #F00
+```
 ---
+
+## 바람직한 변수명
+
+- 사람이 읽을 수 있는 이름을 사용한다.
+- 줄임말이나 a,b,c와 같이 짧은 이름은 피한다.
+- 최대한 서술적이고 간결하게 명명한다.
+- 자신만의 규칙이나 소속된 팀의 규칙을 따른다.
+
+---
+
 ## 호이스팅(hoisting)
 > 선언은 호이스팅 되지만 할당은 호이스팅 되지 않는다.
 
